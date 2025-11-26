@@ -52,34 +52,36 @@ const GeneratedLesson: React.FC<GeneratedLessonProps> = ({ content, context, lan
 
   return (
     <div className="space-y-8 mt-6">
-      {/* Header / Context */}
+      {/* Header / Download Actions */}
       <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div>
-            <h2 className="text-sm font-bold text-blue-600 uppercase tracking-wide mb-1">
-              {content.canDo.skill} • {content.canDo.level}
-            </h2>
-            <p className="text-xl font-bold text-slate-800">
-              "{content.canDo.statement}"
-            </p>
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+              <h2 className="text-sm font-bold text-blue-600 uppercase tracking-wide mb-1">
+                {content.canDo.skill} • {content.canDo.level}
+              </h2>
+              <p className="text-xl font-bold text-slate-800">
+                "{content.canDo.statement}"
+              </p>
+            </div>
           </div>
           
-          <div className="flex gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
             <button 
               onClick={() => downloadStudentPDF(content, context, language)}
-              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
+              className="flex items-center justify-center gap-3 px-6 py-4 text-base font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
               title="Download worksheet for students"
             >
-              <FileText size={16} />
-              <span>Worksheet</span>
+              <FileText size={20} />
+              <span>Download Student Worksheet (PDF)</span>
             </button>
             <button 
               onClick={() => downloadTeacherPDF(content, context, language)}
-              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
+              className="flex items-center justify-center gap-3 px-6 py-4 text-base font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
               title="Download answer key for teachers"
             >
-              <KeyRound size={16} />
-              <span>Answer Key</span>
+              <KeyRound size={20} />
+              <span>Download Answer Key (PDF)</span>
             </button>
           </div>
         </div>

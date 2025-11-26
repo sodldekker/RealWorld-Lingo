@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NewsItem, ExerciseLevel, Language, CEFRLevel, Topic, LessonPlan } from './types';
 import { fetchContentSuggestions, generateLessonPlan } from './services/geminiService';
 import ContentCard from './components/ContentCard';
@@ -25,6 +25,17 @@ const App: React.FC = () => {
   const [generatedLesson, setGeneratedLesson] = useState<LessonPlan | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+
+  const lessonRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to lesson when generated
+  useEffect(() => {
+    if (generatedLesson && lessonRef.current) {
+      setTimeout(() => {
+        lessonRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }, [generatedLesson]);
 
   // Handlers
   const handleSelectLanguage = (lang: Language) => {
@@ -293,11 +304,13 @@ const App: React.FC = () => {
 
             {/* Results */}
             {generatedLesson && !isLoading && language && selectedItem && (
-              <GeneratedLesson 
-                content={generatedLesson} 
-                context={selectedItem} 
-                language={language} 
-              />
+              <div ref={lessonRef} id="generated-lesson-anchor" className="scroll-mt-24">
+                <GeneratedLesson 
+                  content={generatedLesson} 
+                  context={selectedItem} 
+                  language={language} 
+                />
+              </div>
             )}
           </div>
         )}
