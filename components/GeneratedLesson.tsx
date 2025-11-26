@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { LessonPlan, Question, NewsItem, Language } from '../types';
-import { CheckCircle2, Send, RefreshCcw, Loader2, BookOpen } from 'lucide-react';
+import { CheckCircle2, Send, RefreshCcw, Loader2, BookOpen, Download, FileText, KeyRound } from 'lucide-react';
 import { evaluateStudentAnswers } from '../services/geminiService';
+import { downloadStudentPDF, downloadTeacherPDF } from '../services/pdfService';
 
 interface GeneratedLessonProps {
   content: LessonPlan;
@@ -53,12 +54,35 @@ const GeneratedLesson: React.FC<GeneratedLessonProps> = ({ content, context, lan
     <div className="space-y-8 mt-6">
       {/* Header / Context */}
       <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
-        <h2 className="text-sm font-bold text-blue-600 uppercase tracking-wide mb-1">
-          {content.canDo.skill} • {content.canDo.level}
-        </h2>
-        <p className="text-xl font-bold text-slate-800">
-          "{content.canDo.statement}"
-        </p>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div>
+            <h2 className="text-sm font-bold text-blue-600 uppercase tracking-wide mb-1">
+              {content.canDo.skill} • {content.canDo.level}
+            </h2>
+            <p className="text-xl font-bold text-slate-800">
+              "{content.canDo.statement}"
+            </p>
+          </div>
+          
+          <div className="flex gap-2">
+            <button 
+              onClick={() => downloadStudentPDF(content, context, language)}
+              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
+              title="Download worksheet for students"
+            >
+              <FileText size={16} />
+              <span>Worksheet</span>
+            </button>
+            <button 
+              onClick={() => downloadTeacherPDF(content, context, language)}
+              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
+              title="Download answer key for teachers"
+            >
+              <KeyRound size={16} />
+              <span>Answer Key</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Questions List */}
