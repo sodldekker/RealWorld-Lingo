@@ -1,0 +1,5 @@
+{
+  "name": "English Current Affairs Tutor",
+  "description": "A React application for Dutch secondary school teachers to generate English lessons based on current news articles and videos.",
+  "requestFramePermissions": []
+}
