@@ -12,27 +12,27 @@ const LevelSelector: React.FC<LevelSelectorProps> = ({ selectedLevel, onSelect, 
   const levels: { level: ExerciseLevel; label: string; desc: string; icon: React.ReactNode }[] = [
     { 
       level: 1, 
-      label: 'Level 1 (A2/B1)', 
-      desc: 'Below Mavo 3',
+      label: 'Level 1', 
+      desc: 'ERK: A2 / low B1',
       icon: <SignalLow size={20} />
     },
     { 
       level: 2, 
-      label: 'Level 2 (B1)', 
-      desc: 'Mavo 3',
+      label: 'Level 2', 
+      desc: 'ERK: B1',
       icon: <SignalMedium size={20} />
     },
     { 
       level: 3, 
-      label: 'Level 3 (B1+/B2)', 
-      desc: 'Above Mavo 3',
+      label: 'Level 3', 
+      desc: 'ERK: B1+ / low B2',
       icon: <SignalHigh size={20} />
     },
   ];
 
   return (
     <div className="w-full">
-      <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Select Target Level</h3>
+      <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Select Exercise Difficulty</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {levels.map((lvl) => (
           <button

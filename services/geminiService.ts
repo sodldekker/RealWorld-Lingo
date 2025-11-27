@@ -9,9 +9,9 @@ GOAL
 - Create exercises at 3 different levels, based on can do-statements for ${language} (in line with SLO and CEFR).
 
 LEVELS (Internal Exercise Complexity)
-- Level 1 ≈ A2 / low B1 (below Mavo 3)
-- Level 2 ≈ B1 (Mavo 3)
-- Level 3 ≈ B1+ / low B2 (above Mavo 3)
+- Level 1 ≈ A2 / low B1
+- Level 2 ≈ B1
+- Level 3 ≈ B1+ / low B2
 
 WHEN YOU ARE CALLED
 The app will call you in two main ways:
